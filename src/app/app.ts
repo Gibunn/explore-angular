@@ -1,10 +1,12 @@
 import { Component, computed, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Button } from './components/button/button';
+import { LoginData } from './models/form.models';
+import { form, FormField } from '@angular/forms/signals';
 
 @Component({
 	selector: 'app-root',
-	imports: [RouterOutlet, Button],
+	imports: [RouterOutlet, Button, FormField],
 	templateUrl: './app.html',
 	styleUrl: './app.css'
 })
@@ -15,6 +17,13 @@ export class App {
 	count = signal(0)
 
 	isAdmin = signal(false)
+
+	loginModel = signal<LoginData>({
+		email: "",
+		password: "",
+	})
+
+	loginForm = form(this.loginModel)
 
 	httydChar = signal([
 		{ id: crypto.randomUUID(), name: "Hiccup" },
@@ -42,5 +51,20 @@ export class App {
 
 	changeToAdmin() {
 		this.isAdmin.update((prev) => !prev)
+	}
+
+	submitForm(e: Event) {
+		e.preventDefault()
+
+		console.log("This is from this.loginForm().value():")
+		console.log(this.loginForm().value())
+
+		console.log("This is from this.loginModel():")
+		console.log(this.loginModel())
+	}
+
+	resetForm() {
+		this.loginForm.email().value.set('')
+		this.loginForm.password().value.set('')
 	}
 }
