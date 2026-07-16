@@ -2,7 +2,7 @@ import { Component, computed, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Button } from './components/button/button';
 import { LoginData } from './models/form.models';
-import { form, FormField } from '@angular/forms/signals';
+import { email, form, FormField, required } from '@angular/forms/signals';
 
 @Component({
 	selector: 'app-root',
@@ -23,7 +23,12 @@ export class App {
 		password: "",
 	})
 
-	loginForm = form(this.loginModel)
+	loginForm = form(this.loginModel, (schema) => {
+		required(schema.email, { message: "Email is required!" })
+		email(schema.email, { message: "Enter a valid email address" })
+
+		required(schema.password, { message: "Password is required" })
+	})
 
 	httydChar = signal([
 		{ id: crypto.randomUUID(), name: "Hiccup" },
