@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Button } from './components/button/button';
 
@@ -9,13 +9,23 @@ import { Button } from './components/button/button';
 	styleUrl: './app.css'
 })
 export class App {
+	name = signal('Gibun')
+	capitalizedName = computed(() => this.name().toUpperCase())
+
 	count = signal(0)
+
+	changeName(newName: string) {
+		if (newName.toLowerCase() === this.name().toLowerCase()) {
+			return this.name.set('Gibun')
+		}
+		this.name.set(newName)
+	}
 
 	increment() {
 		this.count.update((prev) => prev + 1)
 	}
 
 	decrement() {
-		this.count.update((prev) => prev + 1)
+		this.count.update((prev) => prev - 1)
 	}
 }
