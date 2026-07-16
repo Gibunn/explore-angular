@@ -14,9 +14,23 @@
 	</div>
 
 	<div class="flex gap-2 justify-between mt-10 w-fit items-center">
-		<button class="bg-lime-400 rounded-full text-white py-2 px-4 w-fit text-lg font-semibold" (click)="increment()">+</button>
+		<button class="bg-lime-400 rounded-full text-white py-2 px-4 w-fit text-lg font-semibold"
+			(click)="increment()">+</button>
 		<span class="font-semibold text-lg">{{count()}}</span>
-		<button class="bg-lime-400 rounded-full text-white py-2 px-4 w-fit text-lg font-semibold" (click)="decrement()">-</button>
+		<button class="bg-lime-400 rounded-full text-white py-2 px-4 w-fit text-lg font-semibold"
+			(click)="decrement()">-</button>
+	</div>
+
+	<div class="flex gap-2 flex-col justify-between mt-10 w-fit items-center">
+		<h1>Data: @if(isAdmin()) {
+			<span class="text-green-400">Access Granted</span>
+			} @else {
+			<span class="text-red-500">Access Denied</span>
+			}
+		</h1>
+		<button class="bg-blue-400 rounded-lg text-white p-2 w-fit" (click)="changeToAdmin()">
+			Change to @if(isAdmin()) {Non Admin} @else {Admin}
+		</button>
 	</div>
 </main>
 

@@ -14,6 +14,8 @@ export class App {
 
 	count = signal(0)
 
+	isAdmin = signal(false)
+
 	changeName(newName: string) {
 		if (newName.toLowerCase() === this.name().toLowerCase()) {
 			return this.name.set('Gibun')
@@ -27,5 +29,9 @@ export class App {
 
 	decrement() {
 		this.count.update((prev) => prev - 1)
+	}
+
+	changeToAdmin() {
+		this.isAdmin.update((prev) => !prev)
 	}
 }
