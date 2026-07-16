@@ -1,8 +1,9 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Button } from './components/button/button';
 import { LoginData } from './models/form.models';
 import { email, form, FormField, required } from '@angular/forms/signals';
+import { Services } from './services';
 
 @Component({
 	selector: 'app-root',
@@ -11,6 +12,10 @@ import { email, form, FormField, required } from '@angular/forms/signals';
 	styleUrl: './app.css'
 })
 export class App {
+	services = inject(Services)
+
+	otherName = this.services.getName()
+
 	name = signal('Gibun')
 	capitalizedName = computed(() => this.name().toUpperCase())
 
