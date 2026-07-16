@@ -1,0 +1,68 @@
+<div class="p-6">
+	<div><app-button /></div>
+
+	<div class="flex flex-col mt-10 gap-2">
+		<span>
+			Name : {{s.name()}}
+		</span>
+		<span>
+			Capitalized Name : {{s.capitalizedName()}}
+		</span>
+		<button class="bg-amber-400 rounded-lg text-white p-2 w-fit" (click)="s.changeName('Gibun Maulana')">Change
+			name
+		</button>
+	</div>
+
+	<div class="flex gap-2 justify-between mt-10 w-fit items-center">
+		<button class="bg-lime-400 rounded-full text-white py-2 px-4 w-fit text-lg font-semibold"
+			(click)="s.increment()">+</button>
+		<span class="font-semibold text-lg">{{s.count()}}</span>
+		<button class="bg-lime-400 rounded-full text-white py-2 px-4 w-fit text-lg font-semibold"
+			(click)="s.decrement()">-</button>
+	</div>
+
+	<div class="flex gap-2 flex-col justify-between mt-10 w-fit items-center">
+		<h1>Data: @if(s.isAdmin()) {
+			<span class="text-green-400">Access Granted</span>
+			} @else {
+			<span class="text-red-500">Access Denied</span>
+			}
+		</h1>
+		<button class="bg-blue-400 rounded-lg text-white p-2 w-fit" (click)="s.changeToAdmin()">
+			Change to @if(s.isAdmin()) {Non Admin} @else {Admin}
+		</button>
+	</div>
+
+	<div class="flex flex-col gap-2 mt-10">
+		@for (char of s.httydChar(); track char.id) {
+		<span>{{char.name}}</span>
+		}
+	</div>
+
+	<form (submit)="s.submitForm($event)" class="flex flex-col gap-2 w-fit mt-10">
+		<div class="flex flex-col gap-1">
+			<label>Email</label>
+			<input class="border border-[#E9E9E9] rounded-lg px-4 py-1" type="email" [formField]="s.loginForm.email" />
+			@if (s.loginForm.email().touched() && s.loginForm.email().invalid()) {
+			@for (error of s.loginForm.email().errors(); track error) {
+			<p class="text-red-500">{{error.message}}</p>
+			}
+			}
+		</div>
+		<div class="flex flex-col gap-1">
+			<label>password</label>
+			<input class="border border-[#E9E9E9] rounded-lg px-4 py-1" type="password"
+				[formField]="s.loginForm.password" />
+			@if (s.loginForm.password().touched() && s.loginForm.password().invalid()) {
+			@for (error of s.loginForm.password().errors(); track error) {
+			<p class="text-red-500">{{error.message}}</p>
+			}
+			}
+		</div>
+		<button type="submit" class="bg-black rounded-lg text-white font-semibold p-2">Submit</button>
+		<button (click)="s.resetForm()" type="button"
+			class="border border-black bg-white rounded-lg text-black font-semibold p-2">Reset</button>
+	</form>
+
+	<!-- <h2 class="mt-10">{{s.otherName}}</h2> -->
+</div>

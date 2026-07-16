@@ -1,0 +1,19 @@
+{
+  "users": [
+    { "id": 1, "email": "admin@test.com", "password": "123456", "name": "Admin" }
+  ],
+  "policies": [
+    {
+      "id": 1,
+      "noPolis": "POL-2026-001",
+      "nasabah": "Budi Santoso",
+      "jenis": "Kesehatan",
+      "premi": 500000,
+      "coverage": 50000000,
+      "tanggalMulai": "2026-01-01",
+      "tanggalExpired": "2026-12-31",
+      "status": "aktif",
+      "catatan": ""
+    }
+  ]
+}
