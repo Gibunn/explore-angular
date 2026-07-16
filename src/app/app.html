@@ -32,6 +32,12 @@
 			Change to @if(isAdmin()) {Non Admin} @else {Admin}
 		</button>
 	</div>
+
+	<div class="flex flex-col gap-2 mt-10">
+		@for (char of httydChar(); track char.id) {
+		<span>{{char.name}}</span>
+		}
+	</div>
 </main>
 
 <router-outlet />

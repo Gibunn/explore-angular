@@ -16,6 +16,15 @@ export class App {
 
 	isAdmin = signal(false)
 
+	httydChar = signal([
+		{ id: crypto.randomUUID(), name: "Hiccup" },
+		{ id: crypto.randomUUID(), name: "Astrid" },
+		{ id: crypto.randomUUID(), name: "Fishlegs" },
+		{ id: crypto.randomUUID(), name: "Snotlout" },
+		{ id: crypto.randomUUID(), name: "Ruffnut" },
+		{ id: crypto.randomUUID(), name: "Tuffnut" },
+	])
+
 	changeName(newName: string) {
 		if (newName.toLowerCase() === this.name().toLowerCase()) {
 			return this.name.set('Gibun')
